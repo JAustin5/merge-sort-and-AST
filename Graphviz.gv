@@ -1,0 +1,80 @@
+# http://www.graphviz.org/content/cluster
+
+digraph G {
+
+	subgraph cluster_0 {
+		node [style=filled];
+		label = "pgm";
+	}
+
+	subgraph cluster_1 {
+		node [style=filled];
+		label = "var1";
+	}
+	
+	subgraph clusert_2 {
+	    node [style=filled];
+	    label = "var2";
+	}
+	
+	subgraph cluster_3 {
+	    node [style=filled]
+	    label = "for_statement";
+	}
+	pgm -> var1;
+	pgm -> var2;
+	pgm -> for_statement;
+	
+	var1 -> lhs1;
+	lhs1 -> fred;
+	var1 -> rhs1;
+	rhs1 -> op_multi;
+	op_multi -> lhs;
+	lhs -> x;
+	op_multi -> rhs;
+	rhs -> x;
+	
+	var2 -> lhs2;
+	lhs2 -> wilma;
+	var2 -> rhs2;
+	rhs2 -> 10;
+	
+	for_statement -> javascript_style;
+	javascript_style -> for_increase;
+	for_increase -> op_increment_by_one;
+	for_increase -> i;
+	
+	javascript_style -> for_var;
+	for_var -> for_rhs;
+	for_lhs -> i;
+	for_var -> for_lhs;
+	for_rhs -> 0;
+	
+	javascript_style -> for_test;
+	for_test -> for_cond_lhs;
+	for_cond_lhs -> i;
+	for_test -> for_condition;
+	for_condition -> less_than_op;
+	for_test -> for_cond_rhs;
+	for_cond_rhs -> fun_call1;
+	fun_call1 -> param1;
+	param1 -> wilma
+	
+	for_statement -> body;
+	body -> fn_call2;
+	fn_call2 -> console_log;
+	fn_call2 -> param2;
+	param2 -> op_multiplication;
+	op_multiplication -> i;
+	op_multiplication -> fred;
+	
+	
+
+	pgm [shape=Mdiamond];
+	fred [shape=Msquare];
+	x [shape=Msquare];
+	wilma [shape=Msquare];
+	10 [shape=Msquare];
+	i [shape=Msquare];
+	0 [shape=Msquare];
+}
